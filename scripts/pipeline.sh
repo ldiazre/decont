@@ -27,7 +27,7 @@ do
 	cutadapt -m 18 -a TGGAATTCTCGGGTGCCAAGG --discard-untrimmed -o out/trimmed/$sid.trimmed.fastq.gz  out/merged/$sid.fastq.gz > log/cutadapt/$sid.log
 	echo "CUTADAPT DONE FOR $sid"
 done
-#TODO: run STAR for all trimmed files
+# Run STAR for all trimmed files
 echo "RUNNING STAR ALIGNMENT"
 for fname in out/trimmed/*.fastq.gz
 do
