@@ -2,7 +2,6 @@
 # into a single file, which should be stored in the output directory specified by the second argument.
 # The directory containing the samples is indicated by the first argument.
 
-
 dircontaining=$1
 outputdir=$2
 sid=$3
