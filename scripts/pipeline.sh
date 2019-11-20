@@ -37,7 +37,6 @@ do
 	echo "ALIGNMENT DONE FOR $sid"
 echo "ANALYSING FOR $sid HAVE FINISHED"
 done
-# TODO: create a log file containing information from cutadapt and star logs
-# (this should be a single log file, and information should be *appended* to it on each run)
-# - cutadapt: Reads with adapters and total basepairs
-# - star: Percentages of uniquely mapped reads, reads mapped to multiple loci, and to too many loci
+
+bash scripts/reviewpipeline.sh
+echo "***ALL DONE***"
