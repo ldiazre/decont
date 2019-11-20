@@ -1,13 +1,13 @@
 echo "ANLYSING HAS STARTED"
+
 #Download all the files specified in data/urls
-for url in $(cat data/urls) 
-do
-    bash scripts/download.sh $url data
-done
+echo "DOWNLOADING DATA FILES"
+wget -i data/urls -P data/ -nc data/urls 
 
 # Download the contaminants fasta file, and uncompress it
 bash scripts/download.sh https://bioinformatics.cnio.es/data/courses/decont/contaminants.fasta.gz res yes
 echo "ALL NECESSARY DATA HAVE BEEN DOWNLOADED"
+
 # Index the contaminants file
 bash scripts/index.sh res/contaminants.fasta res/contaminants_idx
 
@@ -27,6 +27,7 @@ do
 	cutadapt -m 18 -a TGGAATTCTCGGGTGCCAAGG --discard-untrimmed -o out/trimmed/$sid.trimmed.fastq.gz  out/merged/$sid.fastq.gz > log/cutadapt/$sid.log
 	echo "CUTADAPT DONE FOR $sid"
 done
+
 # Run STAR for all trimmed files
 echo "RUNNING STAR ALIGNMENT"
 for fname in out/trimmed/*.fastq.gz
