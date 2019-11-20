@@ -3,12 +3,12 @@
 url=$1
 dir=$2
 yes=$3
-echo "DESCARGANDO DATOS DE ARCHIVOS Y CONTAMINANTES"
-wget -P $dir $url
+echo "DOWNLOADING CONTAMINANTS DATA FILES"
+wget -P $dir $url -nc $dir/$url
 echo
 if [ "$yes" == "yes" ]
 then
 bn=$(basename $url)
 gunzip -k $dir/$bn
-echo "CONTAMINANTES UNZIP"
+echo "CONTAMINANTS $bn UNZIP"
 fi

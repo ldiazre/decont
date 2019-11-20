@@ -6,7 +6,6 @@ dircontaining=$1
 outputdir=$2
 sid=$3
 
-echo "MERGING THE SAMPLES"
 mkdir -p $outputdir
 cat $dircontaining/$sid* > $outputdir/$sid.fastq.gz
 echo "MERGIND DONE FOR $sid"

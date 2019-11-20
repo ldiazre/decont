@@ -7,4 +7,4 @@ outdir=$2
 echo "RUNNIN G STAR INDEX"
 mkdir -p res/contaminants_idx
  STAR --runThreadN 4 --runMode genomeGenerate --genomeDir $2 --genomeFastaFiles $1 --genomeSAindexNbases 9
-echo "BIEN HECHO"
+echo "INDEX DONE FOR $genomefile"
