@@ -19,7 +19,8 @@ fi
 echo "MERGING THE SAMPLES"
 for sid in $(ls data/*.fastq.gz | cut -d"-" -f1 | sed 's:data/::' | sort | uniq)
 do
-	if [ -f out/merged/$sid.fastq.gz/ ]; then
+	if [ -f out/merged/$sid.fastq.gz/ ]
+	then
 		echo "OUTPUT FILE ALREADY EXISTS"
 	else
 		bash scripts/merge_fastqs.sh data out/merged $sid
@@ -32,7 +33,8 @@ mkdir -p log/cutadapt
 mkdir -p out/trimmed 
 for sid in $(ls out/merged/*fastq.gz | cut -d"." -f1 | sed 's:out/merged/::' )
 do
-	if [ -d out/trimmed/$sid.trimmed.fastq.gz/ ]; then
+	if [ -d out/trimmed/$sid.trimmed.fastq.gz/ ]
+	then
 		echo "OUTPUT FILE ALREADY EXISTS"
 	else
 		cutadapt -m 18 -a TGGAATTCTCGGGTGCCAAGG --discard-untrimmed -o out/trimmed/$sid.trimmed.fastq.gz  out/merged/$sid.fastq.gz > log/cutadapt/$sid.log
@@ -46,9 +48,9 @@ for fname in out/trimmed/*.fastq.gz
 do
 	sid=$(echo $(basename $fname .trimmed.fastq.gz))
 	mkdir -p out/star/$sid/
-    	if [ -d out/star/$sid/ ]; then
+    	if [ -s out/star/$sid/* ]
+	then
 		echo "OUPUT FILE ALREADY EXISTS"
-		break
 	else
 		STAR --runThreadN 4 --genomeDir res/contaminants_idx --outReadsUnmapped Fastx --readFilesIn $fname --readFilesCommand zcat --outFileNamePrefix out/star/$sid/
 		echo "ALIGNMENT DONE FOR $sid"
@@ -56,7 +58,8 @@ do
 echo "ANALYSING FOR $sid HAVE FINISHED"
 done
 
-if [ -f out/pipeline.log ]; then
+if [ -f out/pipeline.log ]
+then
 	echo "OUTPUTFILE ALREADY EXISTS"
 else
 	bash scripts/reviewpipeline.sh
